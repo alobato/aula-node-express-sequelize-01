@@ -10,7 +10,9 @@ router.get('/users', async (req, res) => {
     return {
       id: user.id,
       name: user.name,
-      email: user.email
+      email: user.email,
+      gender: user.gender,
+      age: user.age
     }
   })
 
@@ -24,8 +26,9 @@ router.get('/users/:id', async (req, res) => {
 })
 
 router.post('/users', async (req, res) => {
+  console.log('req.body', req.body)
   const userParams = req.body.user
-  const user = await models.User.create({name: userParams.name, email: userParams.email})
+  const user = await models.User.create({name: userParams.name, email: userParams.email, gender: userParams.gender, age: userParams.age})
   return res.json({ user })
 })
 
